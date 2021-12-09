@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HelloController {
 
-	@RequestMapping("/")
+	@RequestMapping("/azure-demo")
 	String home(ModelMap modal) {
 		modal.addAttribute("title", "Dear Learner");
 		modal.addAttribute("message", "Welcome to SpringBoot");
