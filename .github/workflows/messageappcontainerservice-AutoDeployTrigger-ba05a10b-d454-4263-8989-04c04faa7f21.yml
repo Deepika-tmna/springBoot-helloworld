@@ -27,8 +27,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: kbtsregistry.azurecr.io
-          username: ${{ secrets.registryname }}
-          password: ${{ secrets.registrypassword}}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Build and push container image to registry
         uses: docker/build-push-action@v2
@@ -56,4 +56,4 @@ jobs:
             echo "Installing containerapp extension"
             az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
             echo "Starting Deploying"
-            az containerapp update -n messageappcontainerservice -g containerapp-rg -i kbtsregistry.azurecr.io/messageappcontainerservice:${{ github.sha }} --registry-login-server kbtsregistry.azurecr.io --registry-username  ${{ secrets.registryname }} --registry-password ${{ secrets.registrypassword }} --debug
+            az containerapp update -n messageappcontainerservice -g containerapp-rg -i kbtsregistry.azurecr.io/messageappcontainerservice:${{ github.sha }} --registry-login-server kbtsregistry.azurecr.io --registry-username  ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }} --debug
